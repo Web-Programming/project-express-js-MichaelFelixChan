@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title></title>
-    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://localhost:3000/bootstrap/css/bootstrap.min.css">
 </head>
 <body>
     <!-- Navbar dapat diambil dari getbootstrap -->
@@ -24,9 +24,9 @@
                     </li>
                 </ul>
             </div>
-            <form class="d-flex" action="/search" method="GET">
-                <input class="form-control me-2" type="search" name="q" placeholder="Search" value="<%= typeof query !== 'undefined' ? query : '' %>">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            <form action="/search" method="get" class="d-flex mb-3">
+                <input class="form-control me-2" type="text" name="q" placeholder="Search" value="<%= typeof query !== 'undefined' ? query : '' %>">
+                <button class="btn btn-primary" type="submit">Cari</button>
             </form>
         </div>
     </nav>

@@ -10,18 +10,20 @@ router.get('/', function (req, res, next) {
   });
 });
 
-router.get('/search', function(req, res, next){
-  const q = req.query.q ? req.query.q.toLowerCase() : '';
-  let filteredProducts = products;
-  if(q){
-    filteredProducts = products.filter(p =>
-      p.name.toLowerCase().includes(query)
+router.get("/search", function(req, res, next){
+  const q = req.query.q ? req.query.q.toLowerCase() : "";
+  let filteredProducts;
+  if(q === ""){
+    filteredProducts = products;
+  }else{
+    filteredProducts=products.filter((product) =>
+      product.name.toLowerCase().includes(q)
     );
   }
-  res.render('index', {
-    title: 'Hasil Pencarian',
+  res.render("index", {
+    title: "Hasil Pencarian",
     products: filteredProducts,
-    searchQuery: req.query.q || '',
+    query: q
   });
 });
 
