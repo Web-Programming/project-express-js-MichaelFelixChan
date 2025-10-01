@@ -23,7 +23,7 @@ var mainController = require('../controllers/main');
 //   res.render("index", {
 //     title: "Hasil Pencarian",
 //     products: filteredProducts,
-//     query: q
+//     query: req.query.q
 //   });
 // });
 

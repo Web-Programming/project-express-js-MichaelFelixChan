@@ -7,7 +7,7 @@ const index = (req, res) => {
   });
 };
 
-const search = (req, res) => {
+const search = (req, res, next) => {
     const q = req.query.q ? req.query.q.toLowerCase() : "";
     let filteredProducts;
     if(q === ""){
@@ -20,7 +20,7 @@ const search = (req, res) => {
     res.render("index", {
         title: "Hasil Pencarian",
         products: filteredProducts,
-        query: q
+        query: req.query.q
     });
 };
 module.exports={index, search};

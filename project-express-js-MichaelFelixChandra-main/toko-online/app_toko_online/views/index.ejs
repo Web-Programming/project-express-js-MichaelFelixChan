@@ -2,6 +2,11 @@
 
 <div class="container mt-5">
   <h1 class="text-center"><% title %></h1>
+  <%if(typeof query !== 'undefined' && query.trim() !== '') {%>
+    <p class="text-muted text-start fw-bold fs-4">
+      Hasil Pencarian
+    </p>
+  <% } %>
   <div class="row">
     <% if(products.length>0) { %>
       <% products.forEach(function(product) { %>
