@@ -5,7 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 //perbaikan 2
-var indexRouter = require('./app_toko_online/routes/index');
+var indexRouter = require('./app_toko_online/routes/index'); //require untuk memanggil
 var usersRouter = require('./app_toko_online/routes/users');
 var engine = require('ejs-blocks'); //menggunakan ejs block
 var app = express();
