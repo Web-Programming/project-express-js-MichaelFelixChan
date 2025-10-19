@@ -3,13 +3,17 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+require('./app_toko_online/models/db'); //panggil file koneksi database
 
 //perbaikan 2
 var indexRouter = require('./app_toko_online/routes/index'); //require untuk memanggil
 var usersRouter = require('./app_toko_online/routes/users');
+var productRouter = require('./app_toko_online/routes/product');
+var apiProductRouter = require("./app_toko_online/routes/api/product");
+var apiUserRouter = require("./app_toko_online/routes/api/user");
+var apiOrderRouter = require("./app_toko_online/routes/api/order");
 var engine = require('ejs-blocks'); //menggunakan ejs block
 var app = express();
-var productRouter = require('./app_toko_online/routes/product');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'app_toko_online', 'views')); // perbaikan 1
@@ -24,9 +28,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 //serving bootstrap
 app.use('/bootstrap', express.static(path.join(__dirname,'node_modules/bootstrap/dist')));
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
-app.use('/product', productRouter);
+// app.use('/', indexRouter);
+// app.use('/users', usersRouter);
+// app.use('/product', productRouter);
+app.use('/api/product', apiProductRouter); // daftarkan route
+app.use('/api/user', apiUserRouter);
+app.use('/api/order', apiOrderRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -1,0 +1,18 @@
+### Create User
+POST http://localhost:3000/api/user
+Content-Type: application/json
+
+{
+  "username": "michael123",
+  "email": "michael123@gmail.com",
+  "password": "123456",
+  "address": "Jl. Merdeka No. 10"
+}
+
+### Get All Users
+GET http://localhost:3000/api/user
+
+### Get User by ID
+GET http://localhost:3000/api/user/68f4f5eff88f4f943b90108d
+
+

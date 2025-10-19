@@ -1,0 +1,16 @@
+### Read all data
+GET http://localhost:3000/api/product
+
+### Insert New Product
+POST http://localhost:3000/api/product
+Content-Type: application/json
+
+{
+    "name" : "Mouse Gaming 2",
+    "price" : 350000,
+    "description" : "Hyper sensitive mouse",
+    "stock" : 10
+}
+
+### Read product by ID
+GET http://localhost:3000/api/product/68f31677b2b33a81bebd7ffb
