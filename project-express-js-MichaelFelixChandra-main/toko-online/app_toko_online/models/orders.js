@@ -16,7 +16,7 @@ const OrderSchema = new mongoose.Schema({
             quantity:{
                 type: Number,
                 required: true,
-                min: [1, 'Jumlah minimal harus 1']
+                min: 1,
             },
             priceAtOrder:{
                 type: Number,

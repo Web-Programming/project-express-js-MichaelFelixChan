@@ -1,31 +1,53 @@
-var Order = require('../models/orders');
+const Order = require('../models/orders');
+const Product = require('../models/products')
 
 const createOrder = async (req, res) => {
-    try{
-        const {user, orderItems} = req.body;
+    const {user, orderItems} = req.body;
+    try {
+        let totalAmount = 0;
+        const itemsWithPrice = [];
+        for (const item of orderItems) {
+            const product = await Product.findById(item.product);
+            if (!product) {
+                return res.status(404).json({ 
+                success: false, 
+                message: `Produk dengan ID ${item.product} tidak ditemukan.` 
+            });
+        }
 
-        const totalAmount = orderItems.reduce((sum, item) => {
-            return sum + item.quantity * item.priceAtOrder;
-        }, 0);
+        const itemTotal = product.price * item.quantity;
+            totalAmount += itemTotal;
+            itemsWithPrice.push({
+                product: item.product,
+                quantity: item.quantity,
+                priceAtOrder: product.price, // Ambil harga real-time dari DB
+            });
+        }
 
         const addOrder = new Order({
             user,
-            orderItems,
+            orderItems: itemsWithPrice,
             totalAmount,
-            status: 'Pending',
-            orderDate: Date.now()
         });
         
         const order = await addOrder.save();
-        res.status(200).json({
+        res.status(201).json({
             status: true,
             message: "Berhasil menambahkan pesanan baru",
             data: order
         });
     }catch(err){
+        console.error(err);
+        if (err.name === 'ValidationError') {
+            return res.status(400).json({ 
+                success: false, 
+                message: err.message 
+            });
+        }
         res.status(500).json({
             status : false,
-            message: "Internal server error"
+            message: "Internal server error",
+            error: err.message
         });
     }
 };
@@ -43,8 +65,7 @@ const listOrders = async (req, res) => {
     }catch(err){
         res.status(500).json({
             status : false,
-            message: "Internal server error",
-            error: err.message
+            message: "Internal server error"
         });
     }
 };

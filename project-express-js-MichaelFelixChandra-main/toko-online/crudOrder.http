@@ -7,21 +7,19 @@ Content-Type: application/json
   "orderItems": [
     {
       "product": "68f31677b2b33a81bebd7ffb",
-      "quantity": 2,
-      "priceAtOrder": 50000
+      "quantity": 2
     }
-  ],
-  "totalAmount": 100000
+  ]
 }
 
 ### Get all orders
 GET http://localhost:3000/api/order
 
 ### Get Order by ID
-GET http://localhost:3000/api/order/68f4ff6b301e8c5c5ba11122
+GET http://localhost:3000/api/order/68fdf8da985caa9c023f1d52
 
 ### Update Order Status
-PUT http://localhost:3000/api/order/68f4ff6b301e8c5c5ba11122
+PUT http://localhost:3000/api/order/68fdf8da985caa9c023f1d52
 Content-Type: application/json
 
 {
